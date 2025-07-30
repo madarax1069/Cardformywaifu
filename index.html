@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Cutie, Souparna 💌</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    .card {
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.4);
+      border-radius: 0;
+      padding: 30px 20px;
+      text-align: center;
+      border: 10px solid transparent;
+      border-image: url('https://i.imgur.com/Z3xWcUP.png') 30 round;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .top-left {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 14px;
+      color: #c71585;
+      font-weight: bold;
+      z-index: 3;
+    }
+    .bottom-right {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 14px;
+      color: #c71585;
+      font-weight: bold;
+      z-index: 3;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 3;
+      position: relative;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    .page {
+      font-size: 18px;
+      color: #4b004f;
+      line-height: 1.7;
+      max-width: 90%;
+      z-index: 3;
+    }
+    b {
+      color: #d4006c;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatHearts 10s linear infinite;
+      opacity: 0.7;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        bottom: -10%;
+        opacity: 0;
+        transform: translateX(0) scale(1) rotate(45deg);
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        bottom: 110%;
+        transform: translateX(40px) scale(1.5) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card Content -->
+  <div class="card">
+    <div class="top-left" id="topLeft">To - Hinata</div>
+    <div class="bottom-right" id="bottomRight">From - Chewing Gum</div>
+    <div class="page" id="content">
+      Happy Girlfriend's Day 💖<br><br>Hey Cutie... 💗 Tap "Next"
+    </div>
+    <button onclick="nextPage()" id="nextBtn">Next</button>
+  </div>
+
+  <!-- Floating hearts (over the card) -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 10 + 's';
+      heart.style.background = ['#ff69b4', '#ff1493', '#ffc0cb'][Math.floor(Math.random() * 3)];
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <script>
+    const content = document.getElementById("content");
+    const topLeft = document.getElementById("topLeft");
+    const bottomRight = document.getElementById("bottomRight");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const pages = [
+      `Souparna,<br><br>You're on my mind — all day, every day.<br>No matter how busy or mad the day is… your name flashes on my screen, and suddenly, I'm calm again.`,
+      `We may be far apart, but our connection is <i>so real</i>.<br><br>I still remember that one hug — short, sweet, but it felt like the whole world stopped. And since then… I've only wanted more.`,
+      `I want to hold your hand, kiss you slowly, and cuddle you for hours.<br>Even through a screen, you make me feel things no one else can.`,
+      `Before you, I didn't know what it felt like to smile randomly while texting.<br><br>Now? One "Hi" from you is enough.<br>You turned my life into something warmer, happier, more alive.`,
+      `You don't have to hide a single part of you.<br>Be messy. Be clingy. Be dirty. Be <b>you</b>.<br>I want all of it. Every kiss. Every secret. Every mood swing.<br>I'm in love with every version of you.`,
+      `My cutie. My angel. My mommy. My waifu. My safe space.<br>My favorite notification. My dream girl — who's real, and mine.`,
+      `Your one message… can flip my whole mood, bring me peace, and make me smile like a fool.<br>You're not just a part of my life — you're the best part.`,
+      `Souparna...<br><br>You're like a <b>goddess</b> to me.<br>My dream isn't just to succeed — it's to succeed <b>so I can give you the life you truly deserve</b> after you marry me.<br><br>I want to take care of you like a princess — emotionally, mentally, financially — forever.<br><br><b>If I become successful before 30…</b><br>Will you marry me? 💍💗`,
+      `Happy GF's Day, My Love 💖<br><br>Forever yours,<br><b>Swapnadip</b>`
+    ];
+
+    let index = 0;
+    function nextPage() {
+      index++;
+      if (index < pages.length) {
+        content.innerHTML = pages[index];
+        if (index > 0) {
+          topLeft.style.display = "none";
+          bottomRight.style.display = "none";
+        }
+        if (index === pages.length - 1) {
+          nextBtn.style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
